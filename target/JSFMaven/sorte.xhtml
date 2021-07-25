@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Glória a Deus!!!</title>
+</h:head>
+<h:body>
+	<h2>Cadastro de Funcionário</h2>
+
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputText value="Digite seu Nome:" />
+			<h:inputText value="#{bean.cad.nome}" />
+			<h:outputText value="Digite seu Endereço:" />
+			<h:inputText value="#{bean.cad.endereco}" />
+			<h:outputText value="Digite seu Telefone:" />
+			<h:inputText value="#{bean.cad.telefone}" />
+			<h:outputText value="Digite seu Email:" />
+			<h:inputText value="#{bean.cad.email}" />
+			<h:outputText value="" /><h:commandButton value="Cadastrar"  action="#{bean.adicionarCadastro}"/>
+		</h:panelGrid>
+	</h:form>
+	<h1>Lista de Cadastro</h1>
+	
+	<h:dataTable value="#{bean.cadList}" var="c" border="1">
+	<h:column>
+		<h:outputText value="#{c.nome}"/>
+		</h:column>
+		<h:column>
+		<h:outputText value="#{c.endereco}"/>
+		</h:column>
+		<h:column>
+		<h:outputText value="#{c.telefone}"/>
+		</h:column>
+		<h:column>
+		<h:outputText value="#{c.email}"/>
+		</h:column>	
+		
+		<h:column>
+		<h:button value="Editar" outcome="/paginas/EditarCadastro.xhtml?parametro=#{c.nome}"/>
+		</h:column>
+	</h:dataTable>
+</h:body>
+</html>

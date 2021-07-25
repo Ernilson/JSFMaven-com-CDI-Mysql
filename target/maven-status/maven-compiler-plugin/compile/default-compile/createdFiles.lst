@@ -1,0 +1,12 @@
+br\com\Model\CadastroModel.class
+br\com\Service\RemedioService.class
+br\com\Utils\Message.class
+br\com\Service\CadastroService.class
+br\com\Utils\NegocioException.class
+br\com\Controller\CadastroControllerBeans.class
+br\com\Model\Base.class
+br\com\Controller\RemedioControllerMB.class
+br\com\Model\Remedio.class
+br\com\DAO\CadastroDAO.class
+br\com\DAO\RemdioDAO.class
+br\com\Repository\ConnectionFactory.class
