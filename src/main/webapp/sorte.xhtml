@@ -13,19 +13,19 @@
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputText value="Digite seu Nome:" />
-			<h:inputText value="#{bean.cad.nome}" />
+			<h:inputText value="#{cadastroMB.cad.nome}" />
 			<h:outputText value="Digite seu Endereço:" />
-			<h:inputText value="#{bean.cad.endereco}" />
+			<h:inputText value="#{cadastroMB.cad.endereco}" />
 			<h:outputText value="Digite seu Telefone:" />
-			<h:inputText value="#{bean.cad.telefone}" />
+			<h:inputText value="#{cadastroMB.cad.telefone}" />
 			<h:outputText value="Digite seu Email:" />
-			<h:inputText value="#{bean.cad.email}" />
-			<h:outputText value="" /><h:commandButton value="Cadastrar"  action="#{bean.adicionarCadastro}"/>
+			<h:inputText value="#{cadastroMB.cad.email}" />
+			<h:outputText value="" /><h:commandButton value="Cadastrar"  action="#{cadastroMB.adicionar}"/>
 		</h:panelGrid>
 	</h:form>
 	<h1>Lista de Cadastro</h1>
 	
-	<h:dataTable value="#{bean.cadList}" var="c" border="1">
+	<h:dataTable value="#{cadastroMB.cadList}" var="c" border="1">
 	<h:column>
 		<h:outputText value="#{c.nome}"/>
 		</h:column>

@@ -19,8 +19,7 @@ public class CadastroService implements Serializable{
 	public void salvar(CadastroModel cad) throws NegocioException {	
 		if (cad.getNome().length()< 3) {
 			throw new NegocioException("O nome do cadastro deve ter mais de três caracteres");
-		}
-		
+		}		
 		try {
 			cadDAO.salvar(cad);
 		} catch (Exception e) {
