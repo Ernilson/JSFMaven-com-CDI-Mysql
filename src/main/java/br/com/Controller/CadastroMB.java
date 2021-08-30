@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -11,10 +13,11 @@ import javax.inject.Named;
 import br.com.Model.CadastroModel;
 import br.com.Service.CadastroService;
 import br.com.Utils.Message;
+import br.com.Utils.NegocioException;
 
 
 @Named
-@ViewScoped	
+@SessionScoped
 public class CadastroMB implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -27,14 +30,17 @@ public class CadastroMB implements Serializable{
 
 	private List<CadastroModel> cadList;
 	
+	//private CadastroModel carrega;
+	
 	@PostConstruct
 	public void inicializar() {
 		cadList = service.todosOsCadastros();
+		cad = new CadastroModel();
 	}
 	
 	public void adicionar() {
 		try {
-			service.salvar(cad);
+			service.gravar(cad);
 			cad = new CadastroModel();
 			inicializar();
 			
@@ -45,17 +51,29 @@ public class CadastroMB implements Serializable{
 		}
 	}
 	
-	
-	public void excluir() {
+	public void editar() {
 		try {
-			service.remover(cad);
-			inicializar();
-			
-			Message.info(cad.getNome()+"Foi removido com sucesso!!");
+			service.gravar(cad);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	public void carregaDados(CadastroModel cad) {
+		this.cad = cad;
+	}
+	
+	public String remover(CadastroModel c) {
+        try {
+        	if (service.remover(c)) {
+        		inicializar();               
+                Message.info(cad.getNome() + "Foi removido com sucesso!!");
+            }
 		} catch (Exception e) {
 			Message.erro(e.getMessage());
 		}
-	}
+        return "sorte.xhtml";
+    }	
 
 	public CadastroModel getCad() {
 		return cad;

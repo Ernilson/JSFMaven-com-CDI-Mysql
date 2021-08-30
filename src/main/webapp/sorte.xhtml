@@ -2,6 +2,7 @@
 <!DOCTYPE html >
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -10,8 +11,9 @@
 <h:body>
 	<h2>Cadastro de Funcionário</h2>
 
-	<h:form>
-		<h:panelGrid columns="2">
+	<h:form id="d">
+	
+		<p:panelGrid columns="2">			
 			<h:outputText value="Digite seu Nome:" />
 			<h:inputText value="#{cadastroMB.cad.nome}" />
 			<h:outputText value="Digite seu Endereço:" />
@@ -20,28 +22,46 @@
 			<h:inputText value="#{cadastroMB.cad.telefone}" />
 			<h:outputText value="Digite seu Email:" />
 			<h:inputText value="#{cadastroMB.cad.email}" />
-			<h:outputText value="" /><h:commandButton value="Cadastrar"  action="#{cadastroMB.adicionar}"/>
-		</h:panelGrid>
+			<h:outputText value="" />
+			<h:commandButton value="Cadastrar" action="#{cadastroMB.adicionar}" />
+		</p:panelGrid>
+		
 	</h:form>
+	
 	<h1>Lista de Cadastro</h1>
 	
-	<h:dataTable value="#{cadastroMB.cadList}" var="c" border="1">
-	<h:column>
-		<h:outputText value="#{c.nome}"/>
-		</h:column>
-		<h:column>
-		<h:outputText value="#{c.endereco}"/>
-		</h:column>
-		<h:column>
-		<h:outputText value="#{c.telefone}"/>
-		</h:column>
-		<h:column>
-		<h:outputText value="#{c.email}"/>
-		</h:column>	
+	<h:form id="tab">
+	<p:dataTable value="#{cadastroMB.cadList}" var="c" border="1">
+		<p:column headerText="Id">
+			<h:outputText value="#{c.id}" />
+		</p:column>
+		<p:column headerText="Nome">
+			<h:outputText value="#{c.nome}" />
+		</p:column>
+		<p:column headerText="Endereço">
+			<h:outputText value="#{c.endereco}" />
+		</p:column>
+		<p:column headerText="Telefone">
+			<h:outputText value="#{c.telefone}" />
+		</p:column>
+		<p:column headerText="Email">
+			<h:outputText value="#{c.email}" />
+		</p:column>
+
+		<p:column>
+			<p:commandButton value="Editar" action="#{cadastroMB.carregaDados(c)}"
+						update=":d"/>
+		</p:column>
+		 
+		<p:column>
+			<p:commandButton value="Remover" action="#{cadastroMB.remover(c)}"
+			update="tab"/>
+		</p:column>
 		
-		<h:column>
-		<h:button value="Editar" outcome="/paginas/EditarCadastro.xhtml?parametro=#{c.nome}"/>
-		</h:column>
-	</h:dataTable>
+	</p:dataTable>
+	
+	</h:form>
+	
 </h:body>
+
 </html>

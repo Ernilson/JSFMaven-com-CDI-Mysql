@@ -19,7 +19,7 @@ public class CadastroDAO <T extends Base> implements Serializable {
 	}
 	
 	//Metodo para Salvar ou alterar
-	public void salvar(T t) {
+	public void gravar(T t) {
 		try {
 			manager.getTransaction().begin();
 			if (t.getId()== null) {

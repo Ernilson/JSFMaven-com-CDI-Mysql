@@ -46,7 +46,7 @@ public class testeCadastro {
 			c.setEmail("segundo@mail.com");
 			c.setTelefone("123456");
 
-			servico.salvar(c);
+			//servico.salvar(c);
 			//cdao.salvar(c);
 			
 		} catch (Exception e) {

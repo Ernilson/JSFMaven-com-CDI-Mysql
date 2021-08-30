@@ -16,20 +16,27 @@ public class CadastroService implements Serializable{
 	@Inject
 	private CadastroDAO<CadastroModel> cadDAO = new CadastroDAO<CadastroModel>();
 	
-	public void salvar(CadastroModel cad) throws NegocioException {	
+	public void gravar(CadastroModel cad) throws NegocioException {	
 		if (cad.getNome().length()< 3) {
 			throw new NegocioException("O nome do cadastro deve ter mais de três caracteres");
 		}		
 		try {
-			cadDAO.salvar(cad);
+			cadDAO.gravar(cad);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
 
-	public void remover(CadastroModel cad) throws NegocioException {
-		cadDAO.remover(CadastroModel.class, cad.getId());
+	public boolean remover(CadastroModel cad) throws NegocioException {
+		try {
+			cadDAO.remover(CadastroModel.class, cad.getId());
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		throw new NegocioException("Erro");
+		
 	}
 	
 	public List<CadastroModel> todosOsCadastros(){
